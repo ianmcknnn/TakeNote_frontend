@@ -1,1 +1,21 @@
 
+#loginContainer{
+    width: 500px;
+    margin-top: 50px;
+}
+
+#appContainer{
+    margin-top: 50px;
+}
+
+#labelContainer{
+    margin-top: 30px;
+}
+
+body{
+    background-color: rgb(225, 239, 245);
+}
+
+#labelButton{
+    width: 100%;
+}

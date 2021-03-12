@@ -5,7 +5,7 @@ class PageContent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            pageNumber: -1,
+            currentPageNumber: -1,
             pageLabel: null,
             pageContent: null,
             err: null,
@@ -40,22 +40,32 @@ class PageContent extends Component {
 
 
     render() {
-            let {pageContent, err, isLoading} = this.state;
+            let {err} = this.state;
             if(err){
                 return(
                     <div>{ err.message }</div>
                 )
             }
-            if(isLoading){
-                return(
-                    <div>"Loading..."</div>
-                )
-            }
+ //           if(isLoading){
+ //               return(
+ //                   <div>"Loading..."</div>
+ //               )
+ //           }
             return(
-                <textarea name='JournalPage' rows='30' columns='90'>{ pageContent }</textarea>
+                <form class='ui form' id='pageForm' onSubmit={this.props.savePage}>
+
+                    <textarea name='journalPage' rows='30' columns='90' ref = {(ref) => this.journalPage = ref} value={ this.props.currentPage } onChange={ this.formChangeHandler}></textarea>
+                    <button class='ui button' type='submit' name='saveButton'>Save page</button>
+                </form>
             )
 
     }
+
+    formChangeHandler = () => {
+        let newValue = this.journalPage.value;
+        this.props.formChangeHandler(newValue);
+    }
+
 }
 
 
